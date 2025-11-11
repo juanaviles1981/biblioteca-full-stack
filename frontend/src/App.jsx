@@ -1,48 +1,21 @@
-import { useState } from "react";
-import "./App.css";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import CreateBook from "./pages/CreateBook.jsx";
+import ShowBook from "./pages/ShowBook.jsx";
+import EditBook from "./pages/EditBook.jsx";
+import DeleteBook from "./pages/DeleteBook.jsx";
 
 function App() {
-  const [formData, setFormData] = useState({
-    nombre: "",
-    autor: ""
-  });
   
-  function handleChange(e) {
-    const {name, value} = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  }
-
-  function handleSubmit() {
-    console.log("Enviando el formulario con el libro:", formData);
-  }
   return (
-    <>
-      <div className="App">
-        <h1>Biblioteca</h1>
-        <form action="">
-        <input
-          type="text"
-          name="nombre"
-          value={formData.nombre}
-          onChange={handleChange}
-          placeholder="Ingrese nombre libro"
-        />
-        <input type="text"
-        name="autor"
-        value={formData.autor}
-        onChange={handleChange}
-        placeholder="Ingrese autor libro" />
-
-        <p>{formData.nombre}</p>
-        <p>{formData.autor}</p>
-        <button type="button"
-        onClick={handleSubmit}>Guardar</button>
-      </form>
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Home/>} />
+      <Route path="/books/create" element={<CreateBook/>} />
+      <Route path="/books/details/:id" element={<ShowBook/>} />
+      <Route path="/books/edit/:id" element={<EditBook/>} />
+      <Route path="/books/delete/:id" element={<DeleteBook/>} />
+    </Routes>
   );
 }
 
