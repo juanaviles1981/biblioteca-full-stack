@@ -2,7 +2,6 @@ import express from "express";
 import { Book } from "../models/bookModel.js";
 const router = express.Router();
 
-
 // Ruta GUARDAR libro
 router.post("/", async (req, res) => {
   try {
@@ -66,7 +65,6 @@ router.put("/:id", async (req, res) => {
     }
 
     return res.status(200).send({ message: "Libro actualizado correctamente" });
-    
   } catch (error) {
     console.log(error.message);
     res.status(500).send({ message: error.message });
